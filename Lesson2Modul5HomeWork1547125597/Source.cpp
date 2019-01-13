@@ -243,7 +243,8 @@ void Task8()
 	}
 
 	
-	if (sum != 0 || arr[0] > 0) printf ("\n Cумма элементов, расположенных до первого отрицательного элемента = %d", sum1);
+	if (sum != 0 && arr[0] > 0) printf("\n Cумма элементов, расположенных до первого отрицательного элемента = %d \n\n", sum1);
+	else printf("\n Первый элемент массива имеет отрицательное значение. \n\n");
 
 }
 
@@ -252,8 +253,38 @@ void Task9()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask9\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	float M[12] = { 0 }, min=0, b;
+	int i, buf=0;
+
+	for (i = 0; i < 12; i++)
+	{
+		M[i] = float (-1 + rand() % 15) / (1 + rand() % 15);
+
+		printf("M[%2d] = %5.2f \n", i, M[i]);
+	}
+
+	for (i = 0; i < 12; i++)
+	{
+		if (M[i] < min)
+		{
+			min = M[i];
+			buf = i;
+		}
+	}
+
+		printf("\n минимальное значение элемента массива - M[%2d] = %5.2f", buf, M[buf]); // можно не исползовать перемен buf, а сделать i-1
+
+		b = M[12-1];
+
+		M[12-1] = M[buf] * 3;
+
+		M[buf] = b;
+
+		printf("\n\n увеличили минимальный элемент в три раза и поменяли местами с последним : \n\n");
+
+		for (i = 0; i < 12; i++) printf("M[%2d] = %5.2f \n", i, M[i]);
 }
 
 
@@ -261,8 +292,31 @@ void Task10()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask10\n\n");
-	printf("\nВ разработке.... \n\n");
+	printf("\n Дан массив М(15) вещественных чисел. Расположить элементы в обратном порядке \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	const int ind = 15;
+	int M[ind] = { 0 }, i, buf=0;
+
+	for (i = 0; i < ind; i++)
+	{
+		M[i] = -1 + rand() % 15;
+		
+		printf("M[%2d] = %2d \n", i, M[i]);
+	}
+
+	printf("\n\n Расположение элементов массива в обратном порядке :\n\n");
+
+	for (i = 0; i < ind/2; i++)
+	{
+		buf = M[i];
+
+		M[i] = M[ind-1 - i];
+
+		M[ind - 1 - i] = buf;
+	}
+
+	for (i = 0; i < ind; i++) printf("M[%2d] = %2d \n", i, M[i]);
 }
 
 
@@ -277,7 +331,7 @@ int main()
 
 	do
 	{
-		printf("Enter number of Task (1) to (9) => ");
+		printf("Enter number of Task (1) to (10) => ");
 		scanf_s("%d", &number);
 
 		switch (number)
@@ -291,7 +345,7 @@ int main()
 		case 7: {Task7(); } break;
 		case 8: {Task8(); } break;
 		case 9: {Task9(); } break;
-		case 10: {Task9(); } break;
+		case 10: {Task10(); } break;
 
 		default: printf("\nEntered number of Task does not exist...\n\n");
 
