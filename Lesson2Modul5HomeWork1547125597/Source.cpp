@@ -128,8 +128,31 @@ void Task5()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask5\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	const int ind = 15;
+	int arr[ind], i, min = 0, max = 0;
+
+	for (i = 0; i < ind; i++)
+	{
+		arr[i] = 1 + rand() % 15;
+
+		printf("A[%2d] = %d \n", i, arr[i]);
+
+		if (arr[i] > max)
+		{
+			max = arr[i];
+			min = max;
+		}
+	}
+	
+	for (i = 0; i < ind; i++) 
+		if (arr[i] < min) min = arr[i];
+
+	printf("\n\n max = %d  min = %d \n", max, min);
+	printf("\n max + min = %d \n", max + min);
+	printf("\n max - min = %d \n", max - min);
+
 }
 
 
@@ -137,8 +160,29 @@ void Task6()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask6\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	const int ind = 17;
+	int arr[ind], i, sum = 0;
+
+	for (i = 0; i < ind; i++)
+	{
+		arr[i] = 1 + rand() % 25;
+
+		printf("A[%2d] = %2d \n", i, arr[i]);
+
+		if (arr[i] % 2 != 0) sum = sum + arr[i];
+	}
+
+	printf("\n\n Заменa элементов кратных трем на сумму нечетных по значению элементов \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		if (arr[i] % 3 == 0) arr[i] = sum;
+		printf("A[%2d] = %2d \n", i, arr[i]);
+	}
+
+
 }
 
 
@@ -146,8 +190,29 @@ void Task7()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask7\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	const int ind = 15;
+	int arr[ind], i, sum = 0, x = 1, zero = 0;
+	
+	for (i = 0; i < ind; i++)
+	{
+		arr[i] = -5 + rand() % 15;
+
+		printf("A[%2d] = %2d \n", i, arr[i]);
+	}
+
+	for (i = 0; i < ind; i++)
+	{
+		if (arr[i] < 0) sum++;
+
+		else x *= arr[i];
+
+		if (arr[i] == 0) zero++;
+	}
+		
+	printf("\n - количество отрицательных - %d \n - произведение положительных - %d \n - количество нулевых элементов - %d \n\n", sum, x, zero);
+
 }
 
 
@@ -155,8 +220,31 @@ void Task8()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask8\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	const int ind = 19;
+	int arr[ind], i, sum = 0, sum1 = 0;
+
+	for (i = 0; i < ind; i++)
+	{
+		arr[i] = -1 + rand() % 9;
+
+		printf("A[%2d] = %2d \n", i, arr[i]);
+
+		if (arr[i] < 0) sum += arr[i];
+	}
+
+	if (sum == 0) printf("\n Отрицательных элементов в массиве не найдено. \n");
+
+	for (i = 0; i < ind; i++)
+	{
+		if (arr[i] >= 0) sum1 += arr[i];
+		else break;
+	}
+
+	
+	if (sum != 0 || arr[0] > 0) printf ("\n Cумма элементов, расположенных до первого отрицательного элемента = %d", sum1);
+
 }
 
 
